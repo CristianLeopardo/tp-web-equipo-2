@@ -18,7 +18,7 @@ namespace Negocio
             Conexion datos = new Conexion();
             try
             {
-                datos.SetearConsulta("SELECT a.id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, m.Id , m.Descripcion as Marca, c.Id, c.Descripcion as Categoria from ARTICULOS a INNER JOIN MARCAS m on a.IdMarca=m.Id INNER JOIN CATEGORIAS c on a.IdCategoria=c.Id ");
+                datos.SetearConsulta("SELECT a.id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, m.Id as MID, m.Descripcion as Marca, c.Id as CID, c.Descripcion as Categoria from ARTICULOS a INNER JOIN MARCAS m on a.IdMarca=m.Id INNER JOIN CATEGORIAS c on a.IdCategoria=c.Id ");
                 datos.Ejecutarconsulta();
 
                 while (datos.Lector.Read())
@@ -31,11 +31,11 @@ namespace Negocio
                     obj.Precio = (decimal)datos.Lector["Precio"];
 
                     obj.marca = new Marca();
-                    obj.marca.Id = (int)datos.Lector["ID"];
+                    obj.marca.Id = (int)datos.Lector["MID"];
                     obj.marca.Descripcion = (string)datos.Lector["Marca"];
 
                     obj.categoria = new Categoria();
-                    obj.categoria.Id = (int)datos.Lector["ID"];
+                    obj.categoria.Id = (int)datos.Lector["CID"];
                     obj.categoria.Descripcion = (string)datos.Lector["Categoria"];
 
                     lista.Add(obj);
