@@ -11,7 +11,7 @@ namespace TPWeb_equipo_2
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        private List<Articulos> ListaArticulos;
+        public List<Articulos> ListaArticulos { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -20,10 +20,14 @@ namespace TPWeb_equipo_2
 
         private void cargarInfo()
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            ListaArticulos = negocio.Listar();
-            dgvArticulos.DataSource = ListaArticulos;
-            dgvArticulos.DataBind();
+            if (Session["listaArticulos"] == null)
+            {
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                ListaArticulos = negocio.ListaArtSP();
+                Session.Add("listaArticulos", negocio.ListaArtSP());
+            }
+            
+
         }
     }
 

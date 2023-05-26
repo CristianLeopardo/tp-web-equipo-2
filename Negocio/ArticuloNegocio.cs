@@ -12,6 +12,50 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
+        public List<Articulos> ListaArtSP()
+        {
+
+            List<Articulos> lista = new List<Articulos>();
+            Conexion datos = new Conexion();
+            try
+            {
+                datos.setearProcedimiento("storedListar");
+                datos.Ejecutarconsulta();
+
+                while (datos.Lector.Read())
+                {
+                    Articulos obj = new Articulos();
+                    obj.id = (int)datos.Lector["ID"];
+                    obj.Codigo = (string)datos.Lector["Codigo"];
+                    obj.Nombre = (string)datos.Lector["Nombre"];
+                    obj.Descripcion = (string)datos.Lector["Descripcion"];
+                    obj.Precio = (decimal)datos.Lector["Precio"];
+
+                    obj.marca = new Marca();
+                    //obj.marca.Id = (int)datos.Lector["Id"]; Storedlistar viene sin el ID Marca
+                    obj.marca.Descripcion = (string)datos.Lector["Marca"];
+
+                    obj.categoria = new Categoria();
+                    //obj.categoria.Id = (int)datos.Lector["Id"]; Storedlistar viene sin el ID categoria
+                    obj.categoria.Descripcion = (string)datos.Lector["Categoria"];
+
+                    obj.imagen = new Imagen();
+                    //obj.imagen.Id = (int)datos.Lector["Id"]; storedlistar viene sin id imagen
+                    obj.imagen.URLImagen = (string)datos.Lector["ImagenUrl"];
+
+                    lista.Add(obj);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.Cerraconexion();
+            }
+        }
         public List<Articulos> Listar()
         {
             List<Articulos> lista = new List<Articulos>();
@@ -52,11 +96,11 @@ namespace Negocio
             }
 
         }
-        
+
 
         public List<Articulos> filtrado(string seleccion, string filtro, string criterio)
         {
-            List<Articulos> lista = new List<Articulos> ();
+            List<Articulos> lista = new List<Articulos>();
             Conexion datos = new Conexion();
 
             try
@@ -80,7 +124,7 @@ namespace Negocio
                         consulta += "a.Descripcion like '%" + filtro + "%' ";
                         break;
                     case "Precio":
-                        if  (criterio == "Igual a")
+                        if (criterio == "Igual a")
                         {
                             consulta += "a.Precio =" + filtro;
                         }
@@ -159,7 +203,7 @@ namespace Negocio
             }
         }
 
-        
+
         public void modificar(Articulos art)
         {
             Conexion datos = new Conexion();
@@ -184,7 +228,7 @@ namespace Negocio
             {
                 datos.Cerraconexion();
             }
-           
+
         }
         public List<Articulos> ListarRes()
         {
@@ -259,7 +303,7 @@ namespace Negocio
                 {
                     return 1;
                 }
-             
+
             }
             catch (Exception ex)
             {
