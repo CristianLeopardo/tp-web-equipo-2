@@ -8,15 +8,13 @@
 
     <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
+            <asp:Repeater runat="server"  ID="Repeater1">
+                <ItemTemplate>
             <div class="carousel-item active">
-                <asp:Image ID="img1" runat="server" />
+                <img src="<%#Container.DataItem %>" width="150"/>
             </div>
-            <div class="carousel-item">
-                <asp:Image ID="img2" runat="server" />
-            </div>
-            <div class="carousel-item">
-                <img src="..." class="d-block w-100" alt="...">
-            </div>
+            </ItemTemplate>
+                </asp:Repeater>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -26,6 +24,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+            
     </div>
 
     <ul class="list-group">

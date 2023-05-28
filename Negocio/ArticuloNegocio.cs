@@ -12,6 +12,7 @@ namespace Negocio
 {
     public class ArticuloNegocio
     {
+
         public List<Articulos> ListaArtSP()
         {
 
@@ -39,9 +40,11 @@ namespace Negocio
                     //obj.categoria.Id = (int)datos.Lector["Id"]; Storedlistar viene sin el ID categoria
                     obj.categoria.Descripcion = (string)datos.Lector["Categoria"];
 
-                    obj.imagen = new Imagen();
+                    obj.Imagen2 = cargarImagen((int)datos.Lector["ID"]);
+
+                    //obj.imagen = new Imagen();
                     //obj.imagen.Id = (int)datos.Lector["Id"]; storedlistar viene sin id imagen
-                    obj.imagen.URLImagen = (string)datos.Lector["ImagenUrl"];
+                    //obj.imagen.URLImagen = (string)datos.Lector["ImagenUrl"];
 
                     lista.Add(obj);
                 }
@@ -55,6 +58,23 @@ namespace Negocio
             {
                 datos.Cerraconexion();
             }
+        }
+        public List<Imagen> ListaImagenes { get; set; }
+
+        private string cargarImagen(int imagen)
+        {
+            ImagenNegocio imagenNegocio = new ImagenNegocio();
+            ListaImagenes = imagenNegocio.listarimagenes(imagen);
+            try
+            {
+                return ListaImagenes[0].URLImagen;
+            }
+            catch
+            {
+                return "https://librerialadorita.com/uploads/product_default.jpg";
+            }
+          
+
         }
         public List<Articulos> Listar()
         {

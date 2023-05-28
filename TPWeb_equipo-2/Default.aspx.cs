@@ -12,6 +12,8 @@ namespace TPWeb_equipo_2
     public partial class WebForm1 : System.Web.UI.Page
     {
         public List<Articulos> ListaArticulos { get; set; }
+        public List<Imagen> ListaImagenes { get; set; }
+        int posicion = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,13 +24,15 @@ namespace TPWeb_equipo_2
         {
             if (Session["listaArticulos"] == null)
             {
-                
+
             }
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.ListaArtSP();
             Session.Add("listaArticulos", negocio.ListaArtSP());
+
         }
 
+       
     }
 
 }

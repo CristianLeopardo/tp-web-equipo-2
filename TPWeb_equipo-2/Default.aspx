@@ -24,7 +24,7 @@
         %>
                 <div class="col">
                     <div class="card">
-                        <img src="<%: art.imagen.URLImagen %>" width="200" height="210" class="card-img-top" alt="FotoArticulo">
+                        <img src="<%: art.Imagen2 %>" width="100"  class="card-img-top" alt="FotoArticulo">
                         <div class="card-body">
                             <h5 class="card-title"><%: art.Nombre %></h5>
                             <p class="card-text"><%: art.Descripcion %></p>
