@@ -24,5 +24,5 @@ namespace Dominio
         public string Imagen2 { get; set; }
         public int idImagen { get; set; }
         public Imagen imagen { get; set; }
-}
+    }
 }

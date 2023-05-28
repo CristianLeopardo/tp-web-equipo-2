@@ -30,12 +30,8 @@
                             <p class="card-text"><%: art.Descripcion %></p>
                             <div class="d-grid gap-2">
                                 <a href="DetalleArticulo.aspx?id=<%: art.id%>" class="btn btn-outline-secondary" type="button" id="btnDetalle">Ver Detalle</a>
-                                <a href="#" class="btn btn-outline-secondary" type="button" id="btnCarrito">Agregar al carrito</a>
+                                <a href="Carrito.aspx?id=<%: art.id%>" class="btn btn-outline-secondary" type="button" id="btnAgregar">Agregar al carrito</a>
                             </div>
-                            
-                            
-                            
-
                         </div>
                     </div>
                 </div>

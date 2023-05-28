@@ -22,13 +22,13 @@ namespace TPWeb_equipo_2
         {
             if (Session["listaArticulos"] == null)
             {
-                ArticuloNegocio negocio = new ArticuloNegocio();
-                ListaArticulos = negocio.ListaArtSP();
-                Session.Add("listaArticulos", negocio.ListaArtSP());
+                
             }
-            
-
+            ArticuloNegocio negocio = new ArticuloNegocio();
+            ListaArticulos = negocio.ListaArtSP();
+            Session.Add("listaArticulos", negocio.ListaArtSP());
         }
+
     }
 
 }
