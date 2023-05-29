@@ -12,14 +12,14 @@
                     <% if (a == 0)
                         { %>
                     <div class="carousel-item active">
-                        <img src="<%#Container.DataItem %>" width="150" />
+                        <img src="<%#Container.DataItem %>" width="150" id="imagen" />
                     </div>
                     <% a = 1;
                         }
                         else
                         {%>
                     <div class="carousel-item ">
-                        <img src="<%#Container.DataItem %>" width="150" />
+                        <img src="<%#Container.DataItem %>" width="150" id="imagen2" />
                     </div>
                     <%
                         } %>
@@ -30,9 +30,9 @@
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <button class="carousel-control-next"  type="button" data-bs-target="#carouselExample" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden"  >Next</span>
         </button>
 
     </div>
@@ -43,4 +43,6 @@
         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
         <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
     </ul>
+    <a href="Default.aspx" class="btn btn-outline-secondary" type="button" id="btnVolver" style="color:black">Volver</a>
+    
 </asp:Content>
