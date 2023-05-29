@@ -15,6 +15,7 @@ namespace TPWeb_equipo_2
 
         public List<Imagen> ListaImagenes { get; set; }
         public int cont = 0;
+        public int a = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.QueryString["Id"] != null)
