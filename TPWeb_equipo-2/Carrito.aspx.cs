@@ -43,6 +43,7 @@ namespace TPWeb_equipo_2
                 ArticuloNegocio articuloNegocio = new ArticuloNegocio();
                 dgvCarrito.DataSource = Session["Carrito"];
                 dgvCarrito.DataBind();
+                CalcularMontoTotal();
             }
             
         }
@@ -59,7 +60,22 @@ namespace TPWeb_equipo_2
 
                 dgvCarrito.DataSource = list;
                 dgvCarrito.DataBind();
+                CalcularMontoTotal();
             }
         }
+
+        protected void CalcularMontoTotal()
+        {
+            List<Carrito> list = (List<Carrito>)Session["Carrito"];
+            decimal montoTotal = 0;
+
+            foreach (Carrito item in list)
+            {
+                montoTotal += item.Precio;
+            }
+
+            lblMontoTotal.Text = montoTotal.ToString("C0"); // "C0" En el ToString hace que este en formato Moneda y sin decimales
+        }
+
     }
 }

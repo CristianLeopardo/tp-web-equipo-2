@@ -12,4 +12,6 @@
         </Columns>
     </asp:GridView>
     <a href="Default.aspx" class="btn btn-outline-secondary" type="button" id="btnVolver">Volver</a>
+    <asp:Label ID="lblMontoTotal" runat="server"></asp:Label>
+
 </asp:Content>
