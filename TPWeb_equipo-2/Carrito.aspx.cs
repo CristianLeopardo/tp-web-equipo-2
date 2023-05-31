@@ -77,13 +77,14 @@ namespace TPWeb_equipo_2
 
             if (Request.QueryString["id"] != "")
             {
-
-                foreach (Carrito item in list)
+                if (Request.QueryString["id"] !=null)
                 {
-                    montoTotal += item.Precio;
+                    foreach (Carrito item in list)
+                    {
+                        montoTotal += item.Precio;
+                    }
+
                 }
-
-
             }
 
             lblMontoTotal.Text = montoTotal.ToString("C0"); // "C0" En el ToString hace que este en formato Moneda y sin decimales
@@ -96,10 +97,12 @@ namespace TPWeb_equipo_2
 
             if (Request.QueryString["id"] != "")
             {
-
-                foreach (Carrito item in list)
+                if (Request.QueryString["id"] != null)
                 {
-                    sumaTotal = list.Count();
+                    foreach (Carrito item in list)
+                    {
+                        sumaTotal = list.Count();
+                    }
                 }
 
             }
