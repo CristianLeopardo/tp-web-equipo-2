@@ -11,8 +11,8 @@ namespace TPWeb_equipo_2
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        
-        
+
+
         private void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,13 +44,14 @@ namespace TPWeb_equipo_2
                 dgvCarrito.DataSource = Session["Carrito"];
                 dgvCarrito.DataBind();
                 CalcularMontoTotal();
+                SumaArt();
             }
-            
+
         }
 
         protected void dgvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if(e.CommandName == "Eliminar")
+            if (e.CommandName == "Eliminar")
             {
                 int ID = Convert.ToInt32(e.CommandArgument);  //Convierte el evento en un valor entero
                 List<Carrito> list = (List<Carrito>)Session["Carrito"];
@@ -61,6 +62,7 @@ namespace TPWeb_equipo_2
                 dgvCarrito.DataSource = list;
                 dgvCarrito.DataBind();
                 CalcularMontoTotal();
+                SumaArt();
             }
         }
 
@@ -69,12 +71,39 @@ namespace TPWeb_equipo_2
             List<Carrito> list = (List<Carrito>)Session["Carrito"];
             decimal montoTotal = 0;
 
-            foreach (Carrito item in list)
+            if (Request.QueryString["id"] != "")
             {
-                montoTotal += item.Precio;
+                if (Request.QueryString["id"] != null)
+                {
+                    foreach (Carrito item in list)
+                    {
+                        montoTotal += item.Precio;
+                    }
+                }
+
             }
 
             lblMontoTotal.Text = montoTotal.ToString("C0"); // "C0" En el ToString hace que este en formato Moneda y sin decimales
+        }
+
+        public void SumaArt()
+        {
+            List<Carrito> list = (List<Carrito>)Session["Carrito"];
+            int sumaTotal = 0;
+
+            if (Request.QueryString["id"] != "")
+            {
+                if (Request.QueryString["id"] != null)
+                {
+                    foreach (Carrito item in list)
+                    {
+                        item.id = 1;
+                        sumaTotal += item.id;
+                    }
+                }
+            }
+
+            lblSumaArt.Text = sumaTotal.ToString();
         }
 
     }
