@@ -20,7 +20,7 @@ namespace Negocio
 
         public Conexion()
         {
-            conexion = new SqlConnection("Server=.\\SQL2; database=CATALOGO_P3_DB; integrated security=true");
+            conexion = new SqlConnection("Server=.\\LABO3; database=CATALOGO_P3_DB; integrated security=true");
             comando = new SqlCommand();
         }
 

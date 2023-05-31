@@ -15,32 +15,51 @@ namespace TPWeb_equipo_2
         
         private void Page_Load(object sender, EventArgs e)
         {
-            Carrito carro = new Carrito();
-            List<Carrito> list = new List<Carrito>();
-            if (Session["Carrito"] != null)       
+            if (!IsPostBack)
             {
-                list = (List<Carrito>)Session["Carrito"];
+                Carrito carro = new Carrito();
+                List<Carrito> list = new List<Carrito>();
+                if (Session["Carrito"] != null)
+                {
+                    list = (List<Carrito>)Session["Carrito"];
+                }
+
+                if (Request.QueryString["id"] != "")
+                {
+                    if (Request.QueryString["id"] != null)
+                    {
+                        int id = int.Parse(Request.QueryString["id"]);
+                        List<Articulos> temporal = (List<Articulos>)Session["listaArticulos"];
+                        Articulos seleccionado = temporal.Find(x => x.id == id);
+                        carro.id = seleccionado.id;
+                        carro.Nombre = seleccionado.Nombre;
+                        carro.Precio = seleccionado.Precio;
+                        list.Add(carro);
+
+                        Session.Add("Carrito", list);
+                    }
+
+                }
+                ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                dgvCarrito.DataSource = Session["Carrito"];
+                dgvCarrito.DataBind();
             }
             
-            if (Request.QueryString["id"] != "")
+        }
+
+        protected void dgvCarrito_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if(e.CommandName == "Eliminar")
             {
-                if (Request.QueryString["id"] != null)
-                {
-                    int id = int.Parse(Request.QueryString["id"]);
-                    List<Articulos> temporal = (List<Articulos>)Session["listaArticulos"];
-                    Articulos seleccionado = temporal.Find(x => x.id == id);                  
-                    carro.id = seleccionado.id;
-                    carro.Nombre = seleccionado.Nombre;
-                    carro.Precio = seleccionado.Precio;
-                    list.Add(carro);
-                    
-                    Session.Add("Carrito", list);
-                }
-                
+                int ID = Convert.ToInt32(e.CommandArgument);  //Convierte el evento en un valor entero
+                List<Carrito> list = (List<Carrito>)Session["Carrito"];
+                list.RemoveAt(ID);  //Eliminacion del articulo seleccionado
+
+                Session["Carrito"] = list;
+
+                dgvCarrito.DataSource = list;
+                dgvCarrito.DataBind();
             }
-            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-            dgvCarrito.DataSource = Session["Carrito"];
-            dgvCarrito.DataBind();
         }
     }
 }
