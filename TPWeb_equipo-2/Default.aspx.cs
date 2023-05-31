@@ -18,6 +18,17 @@ namespace TPWeb_equipo_2
         protected void Page_Load(object sender, EventArgs e)
         {
             cargarInfo();
+
+            if (!IsPostBack)
+            {
+                if (Session["Carrito"] != null)
+                {
+                    List<Carrito> list = (List<Carrito>)Session["Carrito"];
+                    int cantidadCarrito = list.Count;
+
+                    lblCantidadCarrito.Text = cantidadCarrito.ToString();
+                }
+            }
         }
 
         private void cargarInfo()

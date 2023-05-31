@@ -15,6 +15,10 @@
         </div>
     </div>
     <hr />
+    <div>
+        <asp:Label Text="Cantidad de Articulos en el Carrito: " runat="server" />
+        <asp:Label ID="lblCantidadCarrito" runat="server" />
+    </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
 

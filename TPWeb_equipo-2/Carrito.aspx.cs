@@ -24,6 +24,8 @@ namespace TPWeb_equipo_2
                     list = (List<Carrito>)Session["Carrito"];
                 }
 
+
+
                 if (Request.QueryString["id"] != "")
                 {
                     if (Request.QueryString["id"] != null)
@@ -38,14 +40,16 @@ namespace TPWeb_equipo_2
 
                         Session.Add("Carrito", list);
                     }
-
                 }
                 ArticuloNegocio articuloNegocio = new ArticuloNegocio();
                 dgvCarrito.DataSource = Session["Carrito"];
                 dgvCarrito.DataBind();
                 CalcularMontoTotal();
                 SumaArt();
+
+
             }
+
 
         }
 
@@ -73,13 +77,12 @@ namespace TPWeb_equipo_2
 
             if (Request.QueryString["id"] != "")
             {
-                if (Request.QueryString["id"] != null)
+
+                foreach (Carrito item in list)
                 {
-                    foreach (Carrito item in list)
-                    {
-                        montoTotal += item.Precio;
-                    }
+                    montoTotal += item.Precio;
                 }
+
 
             }
 
@@ -93,14 +96,12 @@ namespace TPWeb_equipo_2
 
             if (Request.QueryString["id"] != "")
             {
-                if (Request.QueryString["id"] != null)
+
+                foreach (Carrito item in list)
                 {
-                    foreach (Carrito item in list)
-                    {
-                        item.id = 1;
-                        sumaTotal += item.id;
-                    }
+                    sumaTotal = list.Count();
                 }
+
             }
 
             lblSumaArt.Text = sumaTotal.ToString();
