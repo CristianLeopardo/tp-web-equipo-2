@@ -32,7 +32,7 @@
                     <span class="carousel-control-prev-icon" style="margin-right:82%" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" style="margin-right:65%" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <button class="carousel-control-next" style="margin-right:64.5%" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                     <span class="carousel-control-next-icon" style="margin-right:70%" aria-hidden="true"></span>
                     <span class="visually-hidden"  >Next</span>
                 </button>

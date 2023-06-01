@@ -45,7 +45,6 @@ namespace TPWeb_equipo_2
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.ListaArtSP();
             Session.Add("listaArticulos", negocio.ListaArtSP());
-
         }
 
         protected void txtbusqueda_TextChanged(object sender, EventArgs e)

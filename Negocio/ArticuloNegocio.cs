@@ -43,7 +43,7 @@ namespace Negocio
                     obj.Imagen2 = cargarImagen((int)datos.Lector["ID"]);
 
                     //obj.imagen = new Imagen();
-                    //obj.imagen.Id = (int)datos.Lector["Id"]; storedlistar viene sin id imagen
+                    //obj.imagen.Id = (int)datos.Lector["Id"];
                     //obj.imagen.URLImagen = (string)datos.Lector["ImagenUrl"];
 
                     lista.Add(obj);
