@@ -14,7 +14,7 @@
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 80px;">
                         <li class="nav-item dropdown">
                             <asp:DropDownList ID="ddlFiltro" CssClass="dropdown" runat="server"></asp:DropDownList>
-                        </li>   
+                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <asp:TextBox ID="txtbusqueda" type="search" CssClass="form-control me-2" OnTextChanged="txtbusqueda_TextChanged" runat="server"></asp:TextBox>
@@ -25,7 +25,8 @@
         </nav>
     </header>
 
-    <hr />
+
+    <hr class="border border-danger border-2 opacity-50">
 
     <div class="row mt-1">
         <div class="bg-secondary py-3">
@@ -37,11 +38,13 @@
             </div>
         </div>
     </div>
-    <hr />
-    <div>
-        <asp:Label Text="Cantidad de Articulos en el Carrito: " runat="server" />
-        <asp:Label ID="lblCantidadCarrito" runat="server" />
+    <hr class="border border-danger border-2 opacity-50">
+    <div class="btn-link text-bg-secondary text-center">
+        <asp:Label Text="Cantidad de Articulos en el Carrito: " CssClass="text-bg-secondary" runat="server" />
+        <asp:Label ID="lblCantidadCarrito" CssClass="bg-danger blockquote" runat="server" />
     </div>
+
+    <hr class="border border-danger border-2 opacity-50">
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
 
@@ -49,26 +52,27 @@
             int nuevo = -1;
             foreach (Dominio.Articulos art in ListaArticulos)
             {
-                if (a!=0) {
+                if (a != 0)
+                {
                     nuevo = art.id;
                 }
-                if (a!=nuevo)
+                if (a != nuevo)
                 {%>
-                    <div class="col">
-                        <div class="card">
-                            <img src="<%: art.Imagen2 %>" width="40" class="card-img-top" alt="FotoArticulo">
-                            <div class="card-body">
-                                <h5 class="card-title"><%: art.Nombre %></h5>
-                                <p class="card-text"><%: art.Descripcion %></p>
-                                <p class="card-text">$<%: art.Precio %></p>
-                                <div class="d-grid gap-2">
-                                    <a href="DetalleArticulo.aspx?id=<%: art.id%>" class="btn btn-outline-secondary" type="button" id="btnDetalle">Ver Detalle</a>
-                                    <a href="Carrito.aspx?id=<%: art.id%>" class="btn btn-outline-secondary" type="button" id="btnAgregar">Agregar al carrito</a>
-                                </div>
-                            </div>
-                        </div>
+        <div class="col">
+            <div class="card">
+                <img src="<%: art.Imagen2 %>" width="40" class="card-img-top" alt="FotoArticulo">
+                <div class="card-body">
+                    <h5 class="card-title"><%: art.Nombre %></h5>
+                    <p class="card-text"><%: art.Descripcion %></p>
+                    <p class="card-text">$<%: art.Precio %></p>
+                    <div class="d-grid gap-2">
+                        <a href="DetalleArticulo.aspx?id=<%: art.id%>" class="btn btn-outline-secondary" type="button" id="btnDetalle">Ver Detalle</a>
+                        <a href="Carrito.aspx?id=<%: art.id%>" class="btn btn-outline-secondary" type="button" id="btnAgregar">Agregar al carrito</a>
                     </div>
-                <%}
+                </div>
+            </div>
+        </div>
+        <%}
                 a = art.id;
             } %>
     </div>

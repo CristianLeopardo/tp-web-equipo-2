@@ -26,9 +26,10 @@ namespace TPWeb_equipo_2
                 ListaImagenes =imagenNegocio.listarimagenes(id);
                 Articulos seleccionado = temporal.Find(x => x.id == id);
                 //txtID.Text = seleccionado.id.ToString();
-                txtCodigo.Text = seleccionado.Codigo;
-                txtNombre.Text = seleccionado.Nombre;
-                txtdescripcion.Text = seleccionado.Descripcion;
+                lblCodigo.Text = seleccionado.Codigo;
+                lblNombre.Text = seleccionado.Nombre;
+                lblDescripcion.Text = seleccionado.Descripcion;
+                lblMarca.Text = seleccionado.marca.Descripcion;
                 Repeater1.DataSource = ListaImagenes;
                 Repeater1.DataBind();
             }
