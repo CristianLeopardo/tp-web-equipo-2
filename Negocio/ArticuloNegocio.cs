@@ -20,6 +20,12 @@ namespace Negocio
             Conexion datos = new Conexion();
             try
             {
+                //Query del SP "storedListar"
+                //SELECT a.id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, m.Descripcion as Marca, c.Descripcion as Categoria
+                //from ARTICULOS a
+                //INNER JOIN MARCAS m on a.IdMarca = m.Id
+                //INNER JOIN CATEGORIAS c on a.IdCategoria = c.Id
+
                 datos.setearProcedimiento("storedListar");
                 datos.Ejecutarconsulta();
 
@@ -73,7 +79,7 @@ namespace Negocio
             {
                 return "https://librerialadorita.com/uploads/product_default.jpg";
             }
-          
+
 
         }
         public List<Articulos> Listar()
