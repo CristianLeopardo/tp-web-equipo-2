@@ -20,7 +20,7 @@ namespace Negocio
 
         public Conexion()
         {
-            conexion = new SqlConnection("Server=.\\LABO3; database=CATALOGO_P3_DB; integrated security=true");
+            conexion = new SqlConnection("Server=.\\SQL2; database=TP_FINAL; integrated security=true");
             comando = new SqlCommand();
         }
 
@@ -28,12 +28,6 @@ namespace Negocio
         {
             comando.CommandType = System.Data.CommandType.Text;
             comando.CommandText = consulta;
-        }
-
-        public void setearProcedimiento(string sp)
-        {
-            comando.CommandType = System.Data.CommandType.StoredProcedure;
-            comando.CommandText = sp;
         }
         public void setearParametro(string nombre, object valor)
         {
@@ -73,6 +67,21 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public int ejecutarAccionScalar()
+        {
+            comando.Connection = conexion;
+            try
+            {
+                conexion.Open();
+                return int.Parse(comando.ExecuteScalar().ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Cerraconexion()
         {
             if (lector != null)
